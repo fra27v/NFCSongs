@@ -1,0 +1,18 @@
+[Unit]
+Description=NFC Music Player
+After=pcscd.service bluetooth.target sound.target
+Requires=pcscd.service
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/home/%i/NFCSongs
+Environment=PYTHONUNBUFFERED=1
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=PULSE_SERVER=unix:/run/user/1000/pulse/native
+ExecStart=/home/%i/NFCSongs/start_nfc.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
