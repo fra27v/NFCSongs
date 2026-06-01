@@ -57,7 +57,7 @@ def start_player(filename):
     full_path = os.path.join(MP3_DIR, filename)
     print(f"?? Playing: {filename}")
     proc = subprocess.Popen(
-        ["mpg123", "-q", "-R"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        ["mpg123", "-q", "-R"], stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True
     )
     time.sleep(0.1)
     proc.stdin.write(f"LOAD {full_path}\n")
